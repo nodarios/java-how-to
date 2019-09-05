@@ -1,0 +1,12 @@
+# Maven 
+target/
+.mvn/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Misc
+*.log
