@@ -22,7 +22,6 @@ public class Prod {
         Person p = new Person(5, "user 5");
         //String message = "{\"id\": 1, \"user\": \"test user\"}";
 
-
         try {
             String ps = new ObjectMapper().writeValueAsString(p);
             kafkaProducer.send(new ProducerRecord<String, String>("syslog", String.valueOf(p.getId()), ps));
