@@ -1,19 +1,15 @@
 package com.cmp.javakafka;
 
-import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    final static Logger logger = LoggerFactory.getLogger(Main.class);
 
-        System.out.println("aaa\\xwww".replace("\\x", ""));
+    public static void main(String[] args) {
 
-        Random rand = new Random();
-        while (true) {
-
-            System.out.println("asd-" + rand.nextInt(500));
-            Thread.sleep(100);
-        }
+        logger.info("hi");
 
     }
 
