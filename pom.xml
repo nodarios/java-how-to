@@ -63,6 +63,11 @@
             <artifactId>simpleclient_httpserver</artifactId>
             <version>0.6.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient_pushgateway</artifactId>
+            <version>0.6.0</version>
+        </dependency>
     </dependencies>
 
 </project>
