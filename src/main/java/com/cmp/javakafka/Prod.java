@@ -26,6 +26,7 @@ public class Prod {
             String ps = new ObjectMapper().writeValueAsString(p);
             kafkaProducer.send(new ProducerRecord<String, String>("syslog", String.valueOf(p.getId()), ps));
             //kafkaProducer.send(new ProducerRecord<>("syslog", message));
+            System.out.println("done");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
