@@ -1,4 +1,4 @@
-package com.cmp.javakafka;
+package com.cmp.javakafka.slf4j;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
