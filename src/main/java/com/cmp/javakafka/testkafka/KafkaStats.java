@@ -45,6 +45,11 @@ public class KafkaStats {
         this.topicPartitions = topicPartitions;
     }
 
+    public void closeConsumer() {
+        //kafkaConsumer.commitAsync();
+        kafkaConsumer.close();
+    }
+
     public void calcMessageSize()
             throws InterruptedException {
         for (int i = 0; i < LOOPS; i++) {

@@ -9,6 +9,8 @@ public class TestRate implements Runnable {
             kafkaStats.calcMessageRate();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            kafkaStats.closeConsumer();
         }
     }
 

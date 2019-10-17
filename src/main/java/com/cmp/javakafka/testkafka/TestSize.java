@@ -9,6 +9,8 @@ public class TestSize implements Runnable {
             kafkaStats.calcMessageSize();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            kafkaStats.closeConsumer();
         }
     }
 
