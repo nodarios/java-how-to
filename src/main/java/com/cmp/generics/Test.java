@@ -1,4 +1,4 @@
-package com.cmp.javakafka.generics;
+package com.cmp.generics;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.cmp.javakafka.generics;
+package com.cmp.generics;
 
 public class MyClassB extends MyClassA {
 
