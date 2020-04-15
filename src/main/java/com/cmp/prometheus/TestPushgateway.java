@@ -1,4 +1,4 @@
-package com.cmp.javakafka.prometheus;
+package com.cmp.prometheus;
 
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Gauge;

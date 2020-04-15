@@ -1,8 +1,6 @@
-package com.cmp.javakafka.testkafka;
+package com.cmp.kafka.testkafka;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.prometheus.client.Counter;
-import io.prometheus.client.Histogram;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.PartitionInfo;
@@ -21,11 +19,6 @@ public class KafkaStats {
     private static final int LOOPS = 1000;
     private static final int INTERVAL_SECONDS = 10;
 
-    private static final Counter RATE_COUNTER = Counter.build()
-            .name("RATE_COUNTER").help("help").labelNames("topic").register();
-    private static final Histogram RATE_HISTOGRAM = Histogram.build()
-            .name("RATE_HISTOGRAM").help("help").labelNames("topic").buckets(1000, 5000, 10000).register();
-
     private KafkaConsumer kafkaConsumer;
     private List<TopicPartition> topicPartitions;
 
@@ -34,8 +27,8 @@ public class KafkaStats {
         Random rand = new Random();
         Properties props = getProps();
         props.put(GROUP_ID_CONFIG, "test-group-" + rand.nextInt(1000));
-        KafkaConsumer kafkaConsumer = new KafkaConsumer<String, GenericRecord>(props);
-        List<TopicPartition> topicPartitions = new ArrayList();
+        KafkaConsumer<String, GenericRecord> kafkaConsumer = new KafkaConsumer<>(props);
+        List<TopicPartition> topicPartitions = new ArrayList<>();
         List<PartitionInfo> partitionInfos = kafkaConsumer.partitionsFor(TOPIC);
         for (PartitionInfo pi : partitionInfos) {
             topicPartitions.add(new TopicPartition(pi.topic(), pi.partition()));
@@ -92,9 +85,6 @@ public class KafkaStats {
                 Long avgMsgRate = totalMessages > 0 ? totalMessages / (INTERVAL_SECONDS * i) : 0L;
                 System.out.println("average rate is " + avgMsgRate + " messages per second");
                 System.out.println();
-                //
-                RATE_COUNTER.labels(TOPIC).inc();
-                RATE_HISTOGRAM.labels(TOPIC).observe(msgRate);
             }
             prevEndOffsets = currEndOffsets;
             Thread.sleep(INTERVAL_SECONDS * 1000);

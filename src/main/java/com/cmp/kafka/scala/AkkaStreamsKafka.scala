@@ -1,4 +1,4 @@
-//package com.cmp.javakafka.scala
+//package com.cmp.kafka.scala
 //
 //import akka.Done
 //import akka.actor.{ActorSystem, CoordinatedShutdown}

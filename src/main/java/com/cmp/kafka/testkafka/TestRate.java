@@ -1,4 +1,4 @@
-package com.cmp.javakafka.testkafka;
+package com.cmp.kafka.testkafka;
 
 public class TestRate implements Runnable {
 
