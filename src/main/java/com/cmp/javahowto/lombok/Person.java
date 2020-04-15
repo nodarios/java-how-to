@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Person {
-
     private int id;
     private String user;
 
