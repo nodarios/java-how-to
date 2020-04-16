@@ -61,6 +61,7 @@
 //          .mapMaterializedValue(c => controlRef.set(c))
 //          .log(s"consumer")
 //          .map { msg =>
+//            //msg.record.value()
 //            ProducerMessage.single(
 //              new ProducerRecord[String, GenericRecord](targetTopic, null),
 //              msg.committableOffset
