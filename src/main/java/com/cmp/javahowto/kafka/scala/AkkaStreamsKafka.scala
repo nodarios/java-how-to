@@ -40,6 +40,7 @@
 //    //      .committableSource(consumerSettings, Subscriptions.assignment(new TopicPartition(topic, 0)))
 //    //      .log(s"consumer")
 //    //      .map { msg =>
+//    //        //msg.record.value()
 //    //        ProducerMessage.single(
 //    //          new ProducerRecord[String, GenericRecord](targetTopic, null),
 //    //          msg.committableOffset
