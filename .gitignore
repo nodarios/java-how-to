@@ -10,4 +10,4 @@ target/
 
 # Misc
 *.log
-local
+local/
