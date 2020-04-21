@@ -36,7 +36,10 @@ public class Cons {
                             "Offset: %d, Key: %s, Value: %s\n",
                             record.offset(), record.key(), record.value()
                     );
-                    Person p = new ObjectMapper().readValue(record.value(), Person.class);
+                    ObjectMapper mapper = new ObjectMapper();
+                    //JavaType jt = mapper.getTypeFactory().constructParametricType(List.class, String.class);
+                    //List<String> l = mapper.readValue(record.value(), jt);
+                    Person p = mapper.readValue(record.value(), Person.class);
                     p.dump();
                 }
                 Thread.sleep(1500);
