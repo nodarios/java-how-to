@@ -7,7 +7,14 @@
     <groupId>com.cmp.javahowto</groupId>
     <artifactId>javahowto</artifactId>
     <version>1.0</version>
-<!--    <version>1.0-SNAPSHOT</version>-->
+    <!--    <version>1.0-SNAPSHOT</version>-->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
 
     <distributionManagement>
         <repository>
@@ -15,12 +22,12 @@
             <name>my maven proxy releases</name>
             <url>http://NEXUS-DN/repository/dir</url>
         </repository>
-<!--        <snapshotRepository>-->
-<!--            <id>my-maven-proxy-releases</id>-->
-<!--            <name>my maven proxy releases</name>-->
-<!--            <url>http://NEXUS-DN/repository/dir4snapshot</url>-->
-<!--            <uniqueVersion>false</uniqueVersion>-->
-<!--        </snapshotRepository>-->
+        <snapshotRepository>
+            <id>my-maven-proxy-releases</id>
+            <name>my maven proxy releases</name>
+            <url>http://NEXUS-DN/repository/dir4snapshot</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
@@ -33,7 +40,18 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-<!--here goes appropriate jar plugin-->
+            <!--here goes appropriate jar plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!--<mainClass></mainClass>-->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -60,13 +78,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <java.version>1.8</java.version>
-    </properties>
 
     <repositories>
         <repository>
