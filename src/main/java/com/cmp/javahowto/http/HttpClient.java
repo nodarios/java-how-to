@@ -18,9 +18,9 @@ import static com.cmp.javahowto.http.HttpMethod.PUT;
 /**
  * OkHttp, Java 11 HttpClient
  */
-class HttpApi {
+class HttpClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpApi.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
 
     private HttpURLConnection conn;
 
@@ -73,12 +73,12 @@ class HttpApi {
 
     static String request(String outputData, String endpoint, HttpMethod method, Map<String, String> headers)
             throws IOException {
-        HttpApi httpApi = new HttpApi();
-        httpApi.prepareConn(endpoint, method, headers);
-        if (method == POST || method == PUT) httpApi.sendData(outputData);
-        httpApi.processResponse();
-        String inputData = httpApi.getData();
-        httpApi.closeConn();
+        HttpClient httpClient = new HttpClient();
+        httpClient.prepareConn(endpoint, method, headers);
+        if (method == POST || method == PUT) httpClient.sendData(outputData);
+        httpClient.processResponse();
+        String inputData = httpClient.getData();
+        httpClient.closeConn();
         logger.info(inputData);
         return inputData;
     }
