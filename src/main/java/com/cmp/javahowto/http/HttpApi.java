@@ -15,6 +15,9 @@ import java.util.Map;
 import static com.cmp.javahowto.http.HttpMethod.POST;
 import static com.cmp.javahowto.http.HttpMethod.PUT;
 
+/**
+ * OkHttp, Java 11 HttpClient
+ */
 class HttpApi {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpApi.class);
