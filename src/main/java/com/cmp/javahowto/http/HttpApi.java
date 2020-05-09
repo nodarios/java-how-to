@@ -3,10 +3,7 @@ package com.cmp.javahowto.http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -18,13 +15,14 @@ import static com.cmp.javahowto.http.HttpMethod.PUT;
 /**
  * OkHttp, Java 11 HttpClient
  */
-class HttpClient {
+public class HttpApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpApi.class);
 
     private HttpURLConnection conn;
 
     private void prepareConn(String endpoint, HttpMethod method, Map<String, String> headers) throws IOException {
+        logger.info("endpoint: {}", endpoint);
         URL url = new URL(endpoint);
         conn = (HttpURLConnection) url.openConnection();
         //conn.setConnectTimeout(5000);
@@ -51,19 +49,30 @@ class HttpClient {
     }
 
     private void processResponse() throws IOException {
-//        if (conn.getResponseCode() != 200)
-//            throw new RuntimeException("ResponseCode: " + conn.getResponseCode() + ", Message: " + conn.getResponseMessage());
-        logger.info("ResponseCode: " + conn.getResponseCode() + ", Message: " + conn.getResponseMessage());
+        //if (conn.getResponseCode() != 200)
+        //    throw new RuntimeException("ResponseCode: " + conn.getResponseCode() + ", Message: " + conn.getResponseMessage());
+        logger.info("response code: {}, response message: {}", conn.getResponseCode(), conn.getResponseMessage());
     }
 
     private String getData() throws IOException {
         StringBuilder data = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+        InputStream responseStream;
+        boolean isErrorStream = false;
+        InputStream errorStream = conn.getErrorStream();
+        if (errorStream != null) {
+            responseStream = errorStream;
+            isErrorStream = true;
+        } else {
+            responseStream = conn.getInputStream();
+        }
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(responseStream))) {
             String line;
             while ((line = in.readLine()) != null) {
                 data.append(line);
             }
         }
+        logger.info("response body: {}", data.toString());
+        if (isErrorStream) throw new IOException();
         return data.toString();
     }
 
@@ -71,15 +80,14 @@ class HttpClient {
         conn.disconnect();
     }
 
-    static String request(String outputData, String endpoint, HttpMethod method, Map<String, String> headers)
+    public static String request(String outputData, String endpoint, HttpMethod method, Map<String, String> headers)
             throws IOException {
-        HttpClient httpClient = new HttpClient();
-        httpClient.prepareConn(endpoint, method, headers);
-        if (method == POST || method == PUT) httpClient.sendData(outputData);
-        httpClient.processResponse();
-        String inputData = httpClient.getData();
-        httpClient.closeConn();
-        logger.info(inputData);
+        HttpApi httpApi = new HttpApi();
+        httpApi.prepareConn(endpoint, method, headers);
+        if (method == POST || method == PUT) httpApi.sendData(outputData);
+        httpApi.processResponse();
+        String inputData = httpApi.getData();
+        httpApi.closeConn();
         return inputData;
     }
 
