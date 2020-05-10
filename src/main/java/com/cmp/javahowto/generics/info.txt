@@ -1,0 +1,13 @@
+generics enable types (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+
+benefits of generics:
+1. code reuse:
+one needs to write a generic method/class/interface only once and use it for any type,
+on the other side, generic method/class/interface treat type parameters as object (type erasure).
+2. type safety:
+generics make errors to appear at compile time rather than at run time
+3. elimination of casts
+
+inheritance:
+https://docs.oracle.com/javase/tutorial/java/generics/inheritance.html
+https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html
