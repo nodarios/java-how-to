@@ -1,0 +1,26 @@
+when multiple threads share mutable object, there may occur:
+1. thread Interference:
+non atomic action can be interleaved
+2. Memory inconsistency:
+no happens before relationship
+no synchronization between the thread memory and the "main" memory
+
+solving
+1. thread Interference is solved:
+by synchronized methods and synchronized statements
+by java.util.concurrent.locks.ReentrantLock
+by java.util.concurrent.atomic.*
+2. Memory inconsistency is solved:
+by synchronized methods and synchronized statements
+by volatile keyword
+by java.util.concurrent.atomic.*
+
+avoid
+1. deadlock:
+don't lock another monitor until first monitor is released
+2. starvation:
+thread is unable to access shared resource due to it is locked by another thread
+
+see also:
+guarded block with wait() and notifyAll()
+concurrent collections
