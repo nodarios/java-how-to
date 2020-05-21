@@ -9,39 +9,41 @@ import java.util.Map;
 
 public class Test {
 
+    private static String schemaStr =
+            "{\n" +
+                    "  \"type\": \"record\",\n" +
+                    "  \"name\": \"Person\",\n" +
+                    "  \"namespace\": \"com.cmp.javakafkaproducer\",\n" +
+                    "  \"fields\": [\n" +
+                    "    {\n" +
+                    "      \"name\": \"id\",\n" +
+                    "      \"type\": \"int\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"name\": \"user\",\n" +
+                    "      \"type\": [\"string\",\"null\"],\n" +
+                    "      \"default\": \"def val\",\n" +
+                    "      \"cust_prop\": \"some prop val\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"name\": \"timestampms\",\n" +
+                    "      \"type\": {\n" +
+                    "        \"type\": \"long\",\n" +
+                    "        \"logicalType\": \"timestamp-millis\"\n" +
+                    "      },\n" +
+                    "      \"cust_prop_for_source_metadata\": {\n" +
+                    "        \"origin_type\": \"datetimeAsString\",\n" +
+                    "        \"pattern\": \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  ]\n" +
+                    "}";
+
     public static void main(String[] args) {
 
         /* handling schema */
-        String schemaStr =
-                "{\n" +
-                        "  \"type\": \"record\",\n" +
-                        "  \"name\": \"Person\",\n" +
-                        "  \"namespace\": \"com.cmp.javakafkaproducer\",\n" +
-                        "  \"fields\": [\n" +
-                        "    {\n" +
-                        "      \"name\": \"id\",\n" +
-                        "      \"type\": \"int\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"name\": \"user\",\n" +
-                        "      \"type\": [\"string\",\"null\"],\n" +
-                        "      \"default\": \"def val\",\n" +
-                        "      \"cust_prop\": \"some prop val\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"name\": \"timestampms\",\n" +
-                        "      \"type\": {\n" +
-                        "        \"type\": \"long\",\n" +
-                        "        \"logicalType\": \"timestamp-millis\"\n" +
-                        "      },\n" +
-                        "      \"cust_prop_for_source_metadata\": {\n" +
-                        "        \"origin_type\": \"datetimeAsString\",\n" +
-                        "        \"pattern\": \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\n" +
-                        "      }\n" +
-                        "    }\n" +
-                        "  ]\n" +
-                        "}";
         // use avro maven plugin to generate java sources for avro schemas
+        // and work with them instead of org.apache.avro.Schema
         // https://github.com/alexholmes/avro-maven
         Schema schema = new Schema.Parser().parse(schemaStr);
         System.out.println(schema.toString(true));
