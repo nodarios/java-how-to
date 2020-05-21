@@ -32,7 +32,7 @@ public class Cons2 {
                 for (ConsumerRecord<String, GenericRecord> record : records) {
                     GenericRecord gr = record.value();
                     Schema schema = gr.getSchema();
-                    System.out.printf("%d %s %d\n", gr.get("id"), gr.get("user"), gr.get("id2"));
+                    System.out.printf("%d %s %d%n", gr.get("id"), gr.get("user"), gr.get("id2"));
                 }
                 Thread.sleep(1500);
             }
