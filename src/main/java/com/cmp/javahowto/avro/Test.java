@@ -3,12 +3,14 @@ package com.cmp.javahowto.avro;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 import java.util.Map;
 
 public class Test {
 
     public static void main(String[] args) {
+
         /* handling schema */
         String schemaStr =
                 "{\n" +
@@ -39,10 +41,8 @@ public class Test {
                         "    }\n" +
                         "  ]\n" +
                         "}";
-        /*
-         * use avro maven plugin to generate java sources for avro schemas
-         * https://github.com/alexholmes/avro-maven
-         */
+        // use avro maven plugin to generate java sources for avro schemas
+        // https://github.com/alexholmes/avro-maven
         Schema schema = new Schema.Parser().parse(schemaStr);
         System.out.println(schema.toString(true));
         schema.getFields().forEach(
@@ -61,13 +61,31 @@ public class Test {
         );
 
         /* handling GenericRecord */
+        // GenericData.Record's constructor does not use default values of schema
         GenericRecord gr = new GenericData.Record(schema);
-        gr.put("id", 3);
-        gr.put("user", "a user");
-        gr.put("timestampms", System.currentTimeMillis());
+        for (Schema.Field field : schema.getFields()) {
+            if (field.name().matches("id")) {
+                gr.put(field.name(), null);
+            }
+            if (field.name().matches("user")) {
+                gr.put(field.name(), "a user");
+            }
+            if (field.name().matches("timestampms")) {
+                //gr.put(field.name(), System.currentTimeMillis());
+            }
+        }
         System.out.println(gr.get("id"));
         System.out.println(gr.get("user"));
         System.out.println(gr.get("timestampms"));
+        // GenericRecordBuilder API does use default values
+        GenericRecord gr2 = new GenericRecordBuilder(schema)
+                .set("id", 4)
+                .set("timestampms", System.currentTimeMillis())
+                .build();
+        System.out.println(gr2.get("id"));
+        System.out.println(gr2.get("user"));
+        System.out.println(gr2.get("timestampms"));
+
     }
 
 }
