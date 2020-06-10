@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Test {
 
@@ -19,13 +20,17 @@ public class Test {
      */
 
     private static Timestamp convertToTimestamp(String time) throws ParseException {
+        //String pattern = "yyyy-MM-dd HH:mm:ss.SSS X";
         String pattern = "yyyy-MM-dd HH:mm:ss.SSS Z";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        //System.out.println(sdf.getTimeZone());
+        //sdf.setTimeZone(TimeZone.getTimeZone("Asia/Tbilisi"));
         Date date = sdf.parse(time);
         return new Timestamp(date.getTime());
     }
 
     public static void main(String[] args) throws ParseException {
+        //System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 +03:00"));
         System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 GET"));
         System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 UTC"));
     }
