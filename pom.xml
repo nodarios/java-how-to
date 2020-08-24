@@ -16,16 +16,23 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>http://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>my-maven-proxy-releases</id>
             <name>my maven proxy releases</name>
-            <url>http://NEXUS-DN/repository/dir</url>
+            <url>http://NEXUS-DN/REPOSITORY/DIR</url>
         </repository>
         <snapshotRepository>
             <id>my-maven-proxy-releases</id>
             <name>my maven proxy releases</name>
-            <url>http://NEXUS-DN/repository/dir4snapshot</url>
+            <url>http://NEXUS-DN/REPOSITORY/DIR4SNAPSHOT</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
@@ -80,15 +87,35 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.3.1</version>
+                <executions>
+                    <execution>
+                        <id>product-api</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <!--<inputSpec>${project.basedir}/src/main/resources/product.yaml</inputSpec>-->
+                            <inputSpec>http://localhost:8080/v2/api-docs?group=product</inputSpec>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                            </configOptions>
+                            <output>${project.build.directory}/generated-sources</output>
+                            <language>java</language>
+                            <apiPackage>com.swagger.client.codegen.rest.api</apiPackage>
+                            <modelPackage>com.swagger.client.codegen.rest.model</modelPackage>
+                            <invokerPackage>com.swagger.client.codegen.rest.invoker</invokerPackage>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>confluent</id>
-            <url>http://packages.confluent.io/maven/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -140,6 +167,48 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.threeten</groupId>
+            <artifactId>threetenbp</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gsonfire</groupId>
+            <artifactId>gson-fire</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
