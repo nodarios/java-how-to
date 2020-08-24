@@ -93,13 +93,13 @@
                 <version>2.3.1</version>
                 <executions>
                     <execution>
-                        <id>product-api</id>
+                        <id>greeting</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <!--<inputSpec>${project.basedir}/src/main/resources/product.yaml</inputSpec>-->
-                            <inputSpec>http://localhost:8080/v2/api-docs?group=product</inputSpec>
+                            <!--<inputSpec>${project.basedir}/src/main/resources/greeting.yaml</inputSpec>-->
+                            <inputSpec>http://localhost:8080/v2/api-docs?group=greeting</inputSpec>
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
                             </configOptions>
