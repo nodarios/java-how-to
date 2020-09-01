@@ -10,7 +10,7 @@ public class Test {
      * Calling System.exit() from Java code
      * <p>
      * ungraceful shutdown:
-     * Sending a kill signal from the OS. For example, by issuing a kill -9 <jvm_pid>
+     * Sending a kill signal from the OS. For example, by issuing a kill -9 PID
      * Calling Runtime.getRuntime().halt() from Java code
      * The host OS dies unexpectedly, for example, in a power failure or OS panic
      * <p>
