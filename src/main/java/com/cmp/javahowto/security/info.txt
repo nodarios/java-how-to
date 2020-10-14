@@ -1,0 +1,12 @@
+# encoding/decoding algorithm
+ascii
+unicode
+base64
+
+# hash algorithm
+md5 - old
+sha256
+bcrypt - for passwords
+
+# encryption/decryption algorithm
+rsa
