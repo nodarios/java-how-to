@@ -2,6 +2,7 @@
 ascii
 unicode
 base64
+url
 
 # hash algorithm
 md5 - old
