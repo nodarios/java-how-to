@@ -25,13 +25,13 @@
 
     <distributionManagement>
         <repository>
-            <id>my-maven-proxy-releases</id>
-            <name>my maven proxy releases</name>
+            <id>nexus-release</id>
+            <name>nexus release</name>
             <url>http://NEXUS-DN/REPOSITORY/DIR</url>
         </repository>
         <snapshotRepository>
-            <id>my-maven-proxy-releases</id>
-            <name>my maven proxy releases</name>
+            <id>nexus-release</id>
+            <name>nexus release</name>
             <url>http://NEXUS-DN/REPOSITORY/DIR4SNAPSHOT</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
