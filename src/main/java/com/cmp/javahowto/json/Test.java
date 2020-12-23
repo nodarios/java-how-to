@@ -1,12 +1,14 @@
 package com.cmp.javahowto.json;
 
 import com.cmp.javahowto.lombok.Person;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Test {
 
@@ -23,6 +25,7 @@ public class Test {
         /** de */
         //JavaType jt = mapper.getTypeFactory().constructParametricType(List.class, String.class);
         //List<String> l = mapper.readValue(jsonStrOrig, jt);
+        //List<String> l2 = mapper.readValue(jsonStrOrig, new TypeReference<>() {}); // fixed in Java 9
         Person person = mapper.readValue(jsonStrOrig, Person.class);
         logger.info("person {}", person.toString());
 
