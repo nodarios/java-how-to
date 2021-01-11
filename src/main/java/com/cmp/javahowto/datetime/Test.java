@@ -30,7 +30,7 @@ public class Test {
     }
 
     public static void main(String[] args) throws ParseException {
-        //System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 +03:00"));
+        System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 +0400"));
         System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 GET"));
         System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 UTC"));
     }
