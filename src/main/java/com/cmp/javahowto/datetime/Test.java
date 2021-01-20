@@ -20,8 +20,7 @@ public class Test {
      */
 
     private static Timestamp convertToTimestamp(String time) throws ParseException {
-        //String pattern = "yyyy-MM-dd HH:mm:ss.SSS X";
-        String pattern = "yyyy-MM-dd HH:mm:ss.SSS Z";
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         //System.out.println(sdf.getTimeZone());
         //sdf.setTimeZone(TimeZone.getTimeZone("Asia/Tbilisi"));
@@ -30,9 +29,8 @@ public class Test {
     }
 
     public static void main(String[] args) throws ParseException {
-        System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 +0400"));
-        System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 GET"));
-        System.out.println(convertToTimestamp("2016-01-31 10:00:00.123 UTC"));
+        System.out.println(convertToTimestamp("2016-01-31T10:00:00.123Z"));
+        System.out.println(convertToTimestamp("2016-01-31T10:00:00.123+04:00"));
     }
 
 }
