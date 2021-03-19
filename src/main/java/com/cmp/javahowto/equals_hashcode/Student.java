@@ -4,7 +4,11 @@ package com.cmp.javahowto.equals_hashcode;
 //import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @EqualsAndHashCode
 public class Student extends Person {
 
