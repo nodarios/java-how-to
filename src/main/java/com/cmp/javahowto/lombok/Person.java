@@ -14,11 +14,14 @@ import lombok.*;
 //@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
-    //@JsonProperty("ididid")
-    //@JsonAlias({"ID", "id"})
     private int id;
 
     private String user;
+    
+    //@JsonProperty("date_time")
+    //@JsonAlias({"date_time"})
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //private Date dateTime;
 
     public void dump() {
         System.out.printf("person dump: %d, %s\n", id, user);
