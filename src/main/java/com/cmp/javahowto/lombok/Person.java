@@ -11,6 +11,8 @@ import lombok.*;
 @Getter
 @ToString
 @EqualsAndHashCode
+//@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 //@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
