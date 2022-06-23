@@ -1,14 +1,13 @@
 package com.cmp.javahowto.json;
 
 import com.cmp.javahowto.lombok.Person;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Test {
 
@@ -18,7 +17,6 @@ public class Test {
 
         String jsonStrOrig = "{\"id\": 1, \"user\": \"test user\"}";
         logger.info("jsonStrOrig {}", jsonStrOrig);
-
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -39,6 +37,10 @@ public class Test {
         System.out.println(id);
         String user = jsonNode.get("user").asText();
         System.out.println(user);
+
+        /** de and edit */
+        ObjectNode objectNode = (ObjectNode) mapper.readTree(jsonStrNew);
+        objectNode.put("additionalField", true);
 
     }
 
