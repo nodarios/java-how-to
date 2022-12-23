@@ -1,0 +1,8 @@
+Comparable and Comparator interfaces:
+both are used for sorting objects in collection.
+if class can be modified, one can use Comparable.
+if not, use Comparator.
+
+p.s.
+Comparable "int compareTo(T other)"
+Comparator "int compare(T o1, T o2)"
