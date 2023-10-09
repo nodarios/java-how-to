@@ -9,10 +9,11 @@ public class Test {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
 
         /*
-         * Use Cases for Annotations:
-         * logging
-         * validations
-         * ...
+         * Java annotations are a form of metadata that can be added to Java source code
+         * to provide additional information about the code to the compiler and/or runtime environment.
+         *
+         * e.g.
+         * @SuppressWarnings: This annotation is used to suppress compiler warnings
          */
 
         Class<MyClass> myClazz = MyClass.class;
