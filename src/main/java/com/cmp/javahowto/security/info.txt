@@ -11,3 +11,7 @@ bcrypt - for passwords
 
 # encryption/decryption algorithm
 rsa
+e.g.
+"keytool" or "openssl" uses rsa to create SSL/TLS public private key pairs for secure communication
+"ssh-keygen" or "openssl" uses rsa to create SSH public private key pairs for authentication
+
