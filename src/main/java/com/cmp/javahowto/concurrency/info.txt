@@ -1,10 +1,8 @@
 when multiple threads share mutable object, there may occur:
 1. thread Interference:
-non atomic action can be interleaved
+non atomic action can be interleaved.
 2. Memory inconsistency:
-occurs when one thread memory write is not visible to another thread,
-because there is no synchronization between the thread memory and the "main" memory,
-that's to say, there is no "happens before relationship".
+this problem arises due to optimizations like CPU caching, JVM reordering memory operations.
 
 solving
 1. thread Interference is solved:
