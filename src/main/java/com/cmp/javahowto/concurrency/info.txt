@@ -19,7 +19,7 @@ by java.util.concurrent.atomic.*
 avoid
 1. deadlock:
 don't lock another monitor until first monitor is released
-2. starvation:
+2. blocked:
 thread is unable to access shared resource due to it is locked by another thread
 
 see also:
