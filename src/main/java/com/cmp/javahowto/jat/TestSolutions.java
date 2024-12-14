@@ -14,12 +14,11 @@ public class TestSolutions {
         //printFibonacci(0, 1, 20);
         //System.out.println(findMissingNumber(new int[]{1, 2, 5, 3}));
         //System.out.println(checkIfNumberIsMagic(163));
-        //findUsingBinarySearch(0, 9, 70, List.of(10, 20, 30, 40, 50, 60, 70, 80, 90, 100), 0);
-
+        //System.out.println(findUsingBinarySearch(new int[]{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}, 80, 0, 9));
         towerOfHanoi(3, 'S', 'A', 'D');
     }
 
-    public static void towerOfHanoi(int n, char source, char auxiliary, char destination) {
+    private static void towerOfHanoi(int n, char source, char auxiliary, char destination) {
         if (n == 1) {
             System.out.println("Move disk 1 from " + source + " to " + destination);
             return;
@@ -35,21 +34,20 @@ public class TestSolutions {
         towerOfHanoi(n - 1, auxiliary, source, destination);
     }
 
-    private static void findUsingBinarySearch(int left, int right, int target, List<Integer> listToSearch, int counter) {
-        counter++;
-        int mid = (right + left) / 2;
-        System.out.println("hit number is: " + listToSearch.get(mid));
-
-        if (listToSearch.get(mid).equals(target)) {
-            System.out.println("found at try: " + counter);
-        } else {
-            if (listToSearch.get(mid) > target) {
-                right = mid - 1;
-                findUsingBinarySearch(left, right, target, listToSearch, counter);
-            } else {
-                left = mid + 1;
-                findUsingBinarySearch(left, right, target, listToSearch, counter);
-            }
+    private static int findUsingBinarySearch(int[] arr, int target, int left, int right) {
+        // find middle index
+        int middleIndex = (left + right) / 2;
+        // if target is the same as middle element, return index
+        if (target == arr[middleIndex]) {
+            return middleIndex;
+        }
+        // if target is less than middle element, go left
+        else if (target < arr[middleIndex]) {
+            return findUsingBinarySearch(arr, target, left, middleIndex - 1);
+        }
+        // if target is greater than middle element, go right
+        else {
+            return findUsingBinarySearch(arr, target, middleIndex + 1, right);
         }
     }
 
