@@ -8,7 +8,7 @@ import java.util.Optional;
 public class TestSolutions {
 
     public static void main(String[] args) {
-        //System.out.println(areWordsAnagram("andro", "nodar"));
+        //System.out.println(checkIfStringsAreAnagrams("andro", "nodar"));
         //System.out.println(calculateFactorial(5));
         //System.out.println(checkIfStringIsPalindrome("rar"));
         //printFibonacci(0, 1, 20);
@@ -107,16 +107,14 @@ public class TestSolutions {
                 : num * calculateFactorial(num - 1);
     }
 
-    private static boolean areWordsAnagram(String word1, String word2) {
-        var word1List = convertStringToList(word1);
-        var word2List = convertStringToList(word2);
-        Collections.sort(word1List);
-        Collections.sort(word2List);
-        return word1List.equals(word2List);
-    }
-
-    private static List<String> convertStringToList(String word) {
-        return Arrays.asList(word.split(""));
+    private static boolean checkIfStringsAreAnagrams(String str1, String str2) {
+        String[] arr1 = str1.split("");
+        String[] arr2 = str2.split("");
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        String convertedStr1 = String.join("", arr1);
+        String convertedStr2 = String.join("", arr2);
+        return convertedStr1.equals(convertedStr2);
     }
 
 }
