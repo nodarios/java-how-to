@@ -2,7 +2,7 @@ package com.cmp.javahowto.dsa;
 
 import java.util.*;
 
-public class Dsa {
+public class Sort {
 
     public static void main(String[] args) {
         insertionSort();
