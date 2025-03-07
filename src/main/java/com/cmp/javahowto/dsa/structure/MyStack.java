@@ -6,18 +6,33 @@ public class MyStack<E> {
     private int position = 0;
 
     public void offer(E element) {
+        if (position >= stack.length) {
+            resize();
+        }
         stack[position] = element;
         position++;
     }
 
     public E peek() {
-        return (E) stack[position-1];
+        if (position > 0) {
+            return (E) stack[position - 1];
+        }
+        return null;
     }
 
     public E poll() {
-        position--;
-        return (E) stack[position];
+        if (position > 0) {
+            return (E) stack[--position];
+        }
+        return null;
+    }
 
+    private void resize() {
+        Object[] newStack = new Object[stack.length + 10];
+        for (int i = 0; i < position; i++) {
+            newStack[i] = stack[i];
+        }
+        stack = newStack;
     }
 
 }

@@ -3,29 +3,59 @@ package com.cmp.javahowto.dsa.structure;
 public class MyQueue<E> {
 
     private Object[] queue = new Object[10];
-    private int position = 0;
+    private int tail = 0;
+    private int head = 0;
 
     public void offer(E element) {
-        queue[position] = element;
-        position++;
+        if (tail >= queue.length) {
+            if (actualLength() > queue.length / 2) {
+                resize();
+            } else {
+                shift();
+            }
+        }
+        queue[tail] = element;
+        tail++;
     }
 
     public E peek() {
-        return (E) queue[0];
+        if (actualLength() > 0) {
+            return (E) queue[head];
+        }
+        return null;
     }
 
     public E poll() {
-        E element = (E) queue[0];
-        shift();
-        return element;
+        if (actualLength() > 0) {
+            return (E) queue[head++];
+        }
+        return null;
     }
 
     private void shift() {
-        for (int i = 1; i < position; i++) {
-            queue[i - 1] = queue[i];
+        int index = 0;
+        for (int i = head; i < tail; i++) {
+            queue[index] = queue[i];
+            index++;
         }
-        position--;
+        tail = index;
+        head = 0;
     }
 
+    private void resize() {
+        int index = 0;
+        Object[] newQueue = new Object[queue.length + 10];
+        for (int i = head; i < tail; i++) {
+            newQueue[index] = queue[i];
+            index++;
+        }
+        queue = newQueue;
+        tail = index;
+        head = 0;
+    }
+
+    private int actualLength() {
+        return tail - head;
+    }
 
 }

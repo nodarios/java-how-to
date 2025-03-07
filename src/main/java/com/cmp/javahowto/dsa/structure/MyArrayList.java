@@ -14,14 +14,14 @@ public class MyArrayList<E> {
     }
 
     public E get(int index) {
-        if (index < position) {
+        if (index >= 0 && index < position) {
             return (E) list[index];
         }
         return null;
     }
 
     public E remove(int index) {
-        if (index < position) {
+        if (index >= 0 && index < position) {
             E element = (E) list[index];
             shift(index);
             return element;
@@ -31,7 +31,7 @@ public class MyArrayList<E> {
 
     private void resize() {
         Object[] newList = new Object[list.length + 10];
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 0; i < position; i++) {
             newList[i] = list[i];
         }
         list = newList;
