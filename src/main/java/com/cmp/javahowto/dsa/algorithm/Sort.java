@@ -1,4 +1,4 @@
-package com.cmp.javahowto.dsa;
+package com.cmp.javahowto.dsa.algorithm;
 
 import java.util.*;
 
