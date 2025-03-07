@@ -21,7 +21,7 @@ public class MyQueue<E> {
     }
 
     private void shift() {
-        for (int i = 1; i < queue.length; i++) {
+        for (int i = 1; i < position; i++) {
             queue[i - 1] = queue[i];
         }
         position--;
