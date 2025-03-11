@@ -8,7 +8,7 @@ public class MyCircularQueue<E> {
     private int size = 0;
 
     public boolean offer(E element) {
-        if (tail != head || size == 0) {
+        if (size < queue.length) {
             queue[tail] = element;
             tail = (tail + 1) % queue.length;
             size++;
