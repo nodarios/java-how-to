@@ -22,8 +22,8 @@ public class MyBst {
             return;
         }
         traverseTree(node.left);
-        System.out.println(node.data); // 8 10
-        traverseTree(node.right); // 12
+        System.out.println(node.data);
+        traverseTree(node.right);
     }
 
     private boolean insert(Node node, int data) {
