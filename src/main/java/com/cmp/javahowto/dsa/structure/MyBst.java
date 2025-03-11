@@ -13,6 +13,19 @@ public class MyBst {
         }
     }
 
+    public void printTreeInOrder() {
+        traverseTree(root);
+    }
+
+    private void traverseTree(Node node) {
+        if (node == null) {
+            return;
+        }
+        traverseTree(node.left);
+        System.out.println(node.data); // 8 10
+        traverseTree(node.right); // 12
+    }
+
     private boolean insert(Node node, int data) {
         if (data < node.data) {
             System.out.println("going left");
