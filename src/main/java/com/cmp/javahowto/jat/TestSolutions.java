@@ -71,9 +71,9 @@ public class TestSolutions {
     private static Optional<Integer> findMissingNumber(int[] array) {
         Optional<Integer> missingNumber = Optional.empty();
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != i + 1) {
-                missingNumber = Optional.of(i + 1);
+        for (int i = 1; i < array.length; i++) {
+            if (array[i - 1] + 1 != array[i]) {
+                missingNumber = Optional.of(array[i - 1] + 1);
                 break;
             }
         }
