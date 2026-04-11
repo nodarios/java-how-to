@@ -13,7 +13,18 @@ public class Test {
          * to provide additional information about the code to the compiler and/or runtime environment.
          *
          * e.g.
+         * @Target(ElementType.?) - TYPE, FIELD, METHOD...
+         * @Retention(RetentionPolicy.?) - SOURCE, CLASS, RUNTIME.
+         * public @interface AnnotationName
+         *
+         * Annotation having Retention SOURCE: available at compile time
          * @SuppressWarnings: This annotation is used to suppress compiler warnings
+         *
+         * Annotation having Retention CLASS: available at compile time and retained in .class file
+         * needed for tools/frameworks that process bytecode in .class files
+         *
+         * Annotation having Retention RUNTIME: also available at run time
+         * needed for reflection
          */
 
         Class<MyClass> myClazz = MyClass.class;
