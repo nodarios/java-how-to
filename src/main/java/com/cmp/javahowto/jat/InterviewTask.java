@@ -2,6 +2,7 @@ package com.cmp.javahowto.jat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
@@ -43,6 +44,13 @@ public class InterviewTask {
         //int[] inputArray = new int[]{9, 12, 14, 18, -8, -6, -2, 1, 3, 6, 8};
         //System.out.println(findSmallestElementIndexInRotatedSortedArray(inputArray));
 
+        // Write a function that takes an array of strings and groups the anagrams together.
+        // You can return the answer in any order.
+        // Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
+        // Output: [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+        //var result = groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"});
+        //System.out.println(result);
+
         streamGrouping();
     }
 
@@ -70,6 +78,26 @@ public class InterviewTask {
                         )
                 );
         System.out.println(result);
+    }
+
+    private static Map<String, List<String>> groupAnagrams(String[] input) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String word : input) {
+            // sort
+            var wordArray = word.split("");
+            Arrays.sort(wordArray);
+            var sortedWord = String.join("", wordArray);
+            // map put
+            List<String> value = map.get(sortedWord);
+            if (value == null) {
+                value = new ArrayList<>();
+                value.add(word);
+                map.put(sortedWord, value);
+            } else {
+                value.add(word);
+            }
+        }
+        return map;
     }
 
     private static int findSmallestElementIndexInRotatedSortedArray(int[] inputArray) {
